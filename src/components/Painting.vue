@@ -13,7 +13,9 @@
         <div class="col">CreationDate:...</div>
       </div>
     </div>
-    <div class="paintingCard testPainting" @click="paintingInfo"></div>
+    <div class="paintingCard imagePainting" @click="paintingInfo">
+      <img :src="location"/>
+    </div>
 </div>
 
 
@@ -28,18 +30,34 @@
       <div class="col">CreationDate:...</div>
     </div>
   </div>
-  <div class="paintingCard testPainting" @click="paintingInfo"></div>
+  <div class="paintingCard imagePainting" @click="paintingInfo">
+    <img :src="location"/>
+  </div>
 </div>
 </template>
 
 <script>
 export default {
-    props: ['lightGrey'],
+    props: {
+      lightGrey:String,
+      id: Number,
+    location: {
+      type:String,
+      default:'/src/assets/pictures/TestPainting.png'
+    },
+    name:String,
+    DateOfCreation:String,
+    creator:String,
+    prompt:String
+    },
 
     methods: {
       paintingInfo() {
         //Navigeer naar painting info view;
-        this.$router.push("info");
+        this.$router.push({
+          name:"info",
+          params: {Id : this.id }
+        });
       },
     }
 }
