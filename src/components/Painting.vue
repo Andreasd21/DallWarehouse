@@ -5,12 +5,14 @@
 <div v-if="lightGrey" class="paintingCol lightGrey col">
     <div class="atribute">
       <div class="row">
-        <div class="col">Name:...</div>
-        <div class="col">Price:...</div>
+        <div class="col" v-if="nameshort">Name:{{nameshort}}</div>
+        <div class="col" v-else>Name:{{name}}</div>
+
+        <div class="col">Price:{{price}}</div>
       </div>
       <div class="row">
-        <div class="col">MadeBy:...</div>
-        <div class="col">CreationDate:...</div>
+        <div class="col">MadeBy:{{creator}}</div>
+        <div class="col">CreationDate:{{DateOfCreation}}</div>
       </div>
     </div>
     <div class="paintingCard imagePainting" @click="paintingInfo">
@@ -22,12 +24,13 @@
 <div v-else class="paintingCol col">
   <div class="atribute">
     <div class="row">
-      <div class="col">Name:...</div>
-      <div class="col">Price:...</div>
+      <div class="col" v-if="nameshort">Name:{{nameshort}}</div>
+      <div class="col" v-else>Name:{{name}}</div>
+      <div class="col">Price:{{price}}</div>
     </div>
     <div class="row">
-      <div class="col">MadeBy:...</div>
-      <div class="col">CreationDate:...</div>
+      <div class="col">MadeBy:{{creator}}</div>
+      <div class="col">CreationDate:{{DateOfCreation}}</div>
     </div>
   </div>
   <div class="paintingCard imagePainting" @click="paintingInfo">
@@ -38,6 +41,11 @@
 
 <script>
 export default {
+  data(){
+    return{
+      nameshort: null
+    }
+  },
     props: {
       lightGrey:String,
       id: Number,
@@ -48,8 +56,14 @@ export default {
     name:String,
     DateOfCreation:String,
     creator:String,
-    prompt:String
+    prompt:String,
+    price:Number,
+    description:String
     },
+    mounted(){
+      this.changeName()
+    },
+
 
     methods: {
       paintingInfo() {
@@ -59,6 +73,14 @@ export default {
           params: {Id : this.id }
         });
       },
+      changeName(){
+        if(this.name){
+          if(this.name.length > 25){
+            this.nameshort = this.name.slice(0,20) +'...'
+          }
+        }
+      }
+      
     }
 }
 </script>
@@ -66,3 +88,14 @@ export default {
 <script>
 
   </script>
+
+<style scoped>
+img
+{
+  
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 100%;
+
+}
+</style>

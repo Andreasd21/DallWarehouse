@@ -12,6 +12,9 @@ export default {
       rowCount:9
     };
   },
+  mounted(){
+    this.loadData()
+  },
   methods: {
       addRow() {
         this.post.push(PaintingRow);
@@ -19,27 +22,28 @@ export default {
         this.rowCount = this.rowCount + 2
       },
       loadData: async function() {
-      await axios.get('https://localhost:44340/api/paintings').then(res =>{
-      this.info = res
+        await axios.get('https://localhost:44340/api/paintings').then(res =>{
+        this.info = res
 
-      let row= []
-      let index =0;
-      for(let x= 0; x<9;x++){
-        for(let y=0;y<3;y++){
-          row.push(res.data[index])
-          index++
+        console.log(this.info)
+
+        let row= []
+        let index =0;
+        for(let x= 0; x<9;x++){
+          for(let y=0;y<3;y++){
+            row.push(res.data[index])
+            index++
+          }
+          this.post.push(row)
+          row = []
         }
-        this.post.push(row)
-        row = []
+        })
       }
-      })
-    }
     },
 };
 </script>
 <template>
   <div class="container">
-    {{info}}
     <span v-for="paintings in post">
       <PaintingRow :painting1="paintings[0]" :painting2="paintings[1]" :painting3="paintings[2]"/>
     </span>
