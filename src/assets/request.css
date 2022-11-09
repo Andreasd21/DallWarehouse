@@ -1,0 +1,9 @@
+.declare{
+    display: flex;
+    background-color: grey;
+}
+
+.request{
+    display: flex;
+    background-color: lightgrey;
+}

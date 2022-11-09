@@ -1,12 +1,19 @@
 <script setup>
-    import axios from 'axios';
+import axios from "axios";
+import Request from "../components/Request.vue"
+
 </script>
 
 <template>
-<div class="container">
+  <div class="container">
     <div class="row">
-         Hier komen de requests
+      <div class="col request">
+        <Request />
+        <Request />
+        <Request />
+      </div>
+      <div class="col declare"></div>
     </div>
-</div>
 
+  </div>
 </template>

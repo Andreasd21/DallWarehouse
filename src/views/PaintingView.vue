@@ -1,14 +1,12 @@
 <script setup>
-    import axios from 'axios';
-    import PaintingInfo from '../components/PaintingInfo.vue'
-
+import axios from "axios";
+import PaintingInfo from "../components/PaintingInfo.vue";
 </script>
 
 <template>
-<div class="container">
+  <div class="container">
     <div class="row">
-        <PaintingInfo/>
+      <PaintingInfo />
     </div>
-</div>
-
+  </div>
 </template>
