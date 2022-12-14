@@ -22,10 +22,10 @@ export default {
       this.rowCount = this.rowCount + 2;
     },
     loadData: async function () {
-      await axios.get(import.meta.env.VUE_API_ENDPOINT + "api/paintings").then((res) => {
+      await axios.get(`${import.meta.env.VITE_API_ENDPOINT}api/Paintings`).then((res) => {
         this.info = res;
 
-        let row = [];q
+        let row = [];
         let index = 0;
         for (let x = 0; x < 9; x++) {
           for (let y = 0; y < 3; y++) {

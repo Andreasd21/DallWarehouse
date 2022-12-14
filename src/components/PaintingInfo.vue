@@ -8,6 +8,7 @@ import axios from 'axios';
   data() {
     return {
       info : [],
+      imagepath:''
     }
     },
     mounted(){
@@ -16,8 +17,10 @@ import axios from 'axios';
     methods: {
 
       loadData: async function() {
-        await axios.get('https://localhost:44340/api/paintings/'+this.$route.params.Id).then(res =>{
+        await axios.get(`${import.meta.env.VITE_API_ENDPOINT}api/Paintings/`+this.$route.params.Id).then(res =>{
         this.info = res.data
+        this.imagepath = 'http://127.0.0.1:8080/' + this.info.location
+
       })
     }
   }
@@ -34,7 +37,7 @@ import axios from 'axios';
 <template>
 <div class="col paintingInfoCol">
 <div class="bigPaintingCard imagePainting">
-  <img :src="'../../'+info.location"/>
+  <img :src="imagepath"/>
 </div>
 </div>
 <div class="col paintingInfoCol">

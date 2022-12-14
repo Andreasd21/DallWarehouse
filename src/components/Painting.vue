@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="paintingCard imagePainting" @click="paintingInfo">
-      <img :src="location"/>
+      <img :src="imagepath"/>
     </div>
 </div>
 
@@ -34,7 +34,7 @@
     </div>
   </div>
   <div class="paintingCard imagePainting" @click="paintingInfo">
-    <img :src="location"/>
+    <img :src="imagepath"/>
   </div>
 </div>
 </template>
@@ -43,7 +43,8 @@
 export default {
   data(){
     return{
-      nameshort: null
+      nameshort: null,
+      imagepath:'',
     }
   },
     props: {
@@ -51,7 +52,7 @@ export default {
       id: Number,
     location: {
       type:String,
-      default:'/src/assets/pictures/TestPainting.png'
+      default:'Images/dino.png'
     },
     name:String,
     DateOfCreation:String,
@@ -62,6 +63,11 @@ export default {
     },
     mounted(){
       this.changeName()
+    },
+    created(){
+      this.imagepath = 'http://127.0.0.1:8080/' + this.location
+      console.log(this.location)
+
     },
 
 
